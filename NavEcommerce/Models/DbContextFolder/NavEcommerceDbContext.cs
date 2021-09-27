@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using NavEcommerce.Models.MotorcyclesFolder;
 
-namespace NavEcommerce.Models.dbContextInstanses
+namespace NavEcommerce.Models.DbContextFolder
 {
-    public class NavCommerceDbContext : DbContext
+    public class NavEcommerceDbContext : DbContext
     {
         public DbSet<Motorcycle> Motorcycles { get; set; }
         public DbSet<Brand> Brands { get; set; }
