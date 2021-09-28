@@ -27,10 +27,7 @@ namespace NavEcommerce
         {
             services.AddControllersWithViews();
             services.AddDbContext<NavEcommerceDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("Default")));
-            
-            
-            
+                     options.UseSqlServer(Configuration.GetConnectionString("MyConnectionStrings")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

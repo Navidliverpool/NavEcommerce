@@ -24,7 +24,6 @@ namespace NavEcommerce.Models.CRUDFolder
             }
 
             var motor = _context.Motorcycles.Add(motorcycle).Entity;
-
             return motor;
         }
     }

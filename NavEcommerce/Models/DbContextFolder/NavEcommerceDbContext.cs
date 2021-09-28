@@ -9,6 +9,9 @@ namespace NavEcommerce.Models.DbContextFolder
 {
     public class NavEcommerceDbContext : DbContext
     {
+        public NavEcommerceDbContext(DbContextOptions options) : base(options)
+        {
+        }
         public DbSet<Motorcycle> Motorcycles { get; set; }
         public DbSet<Brand> Brands { get; set; }
     }
