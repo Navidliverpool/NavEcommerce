@@ -2,7 +2,7 @@
 
 namespace NavEcommerce.Migrations
 {
-    public partial class MyFirstMigration : Migration
+    public partial class MyFourthMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -10,8 +10,8 @@ using NavEcommerce.Models.DbContextFolder;
 namespace NavEcommerce.Migrations
 {
     [DbContext(typeof(NavEcommerceDbContext))]
-    [Migration("20210928231625_MyFirstMigration")]
-    partial class MyFirstMigration
+    [Migration("20210929172627_MyFourthMigration")]
+    partial class MyFourthMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
