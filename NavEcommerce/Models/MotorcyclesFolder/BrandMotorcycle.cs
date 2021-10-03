@@ -7,8 +7,8 @@ namespace NavEcommerce.Models.MotorcyclesFolder
 {
     public class BrandMotorcycle
     {
-        public int MotorcycleId { get; set; }
-        public int BrandId { get; set; }
-        public IEnumerable<Dealer> Dealers { get; set; }
+        //public int MotorcycleId { get; set; }
+        //public int BrandId { get; set; }
+        //public string Dealers { get; set; }
     }
 }
