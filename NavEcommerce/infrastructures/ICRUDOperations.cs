@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace NavEcommerce.infrastructures
 {
-    interface ICRUDOperations
+    public interface ICRUDOperations<T>
     {
-        public Motorcycle Add(Motorcycle motorcycle);
+        void Add(T t);
+        void Remove(int id);
+
     }
 }
