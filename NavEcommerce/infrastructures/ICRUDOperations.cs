@@ -8,8 +8,11 @@ namespace NavEcommerce.infrastructures
 {
     public interface ICRUDOperations<T>
     {
-        void Add(T t);
-        void Remove(int id);
-
+        T Add(T entity);
+        T Get(T id);
+        IEnumerable<T> GetAll();
+        T Update(T entity);
+        T Delete(T entity);
+        void SaveChanges();
     }
 }
