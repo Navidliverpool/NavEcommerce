@@ -9,6 +9,7 @@ namespace NavEcommerce.Models.MotorcyclesFolder
     {
         public int Id { get; set; }
         public string Model { get; set; }
+        public double Price { get; set; }
         public IEnumerable<Brand> Brands { get; set; }
     }
 }

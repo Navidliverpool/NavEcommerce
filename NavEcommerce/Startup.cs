@@ -10,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NavEcommerce.infrastructures;
+using NavEcommerce.Models.CRUDFolder;
+using NavEcommerce.Models.MotorcyclesFolder;
 
 namespace NavEcommerce
 {
@@ -28,6 +31,7 @@ namespace NavEcommerce
             services.AddControllersWithViews();
             services.AddDbContext<NavEcommerceDbContext>(options =>
                      options.UseSqlServer(Configuration.GetConnectionString("MyConnectionString")).EnableSensitiveDataLogging());
+            services.AddScoped(typeof(ICRUDOperations<>), typeof(CRUDOperations<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
