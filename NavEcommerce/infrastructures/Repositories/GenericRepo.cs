@@ -4,17 +4,16 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using NavEcommerce.infrastructures;
-using NavEcommerce.Models.DbContextFolder;
-using NavEcommerce.Models.MotorcyclesFolder;
+using NavEcommerce.infrastructures.DbContextInstances;
 
-namespace NavEcommerce.Models.CRUDFolder
+namespace NavEcommerce.infrastructures.Repositories
 {
-    public class CRUDOperations<T> where T : class , ICRUDOperations<T>
+    public class GenericRepo<T> where T : class , IGenericRepo<T>
     {
         private NavEcommerceDbContext _context;
-        public CRUDOperations(NavEcommerceDbContext context)
+        public GenericRepo(NavEcommerceDbContext context)
         {
-            context = _context;
+           _context = context;
         }
 
         public virtual T Add(T entity)

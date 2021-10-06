@@ -1,4 +1,4 @@
-﻿namespace NavEcommerce.Models.MotorcyclesFolder
+﻿namespace NavEcommerce.Models
 {
     public class Dealer
     {

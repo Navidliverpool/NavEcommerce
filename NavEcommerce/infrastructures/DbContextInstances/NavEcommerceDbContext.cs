@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NavEcommerce.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NavEcommerce.Models.MotorcyclesFolder;
 
-namespace NavEcommerce.Models.DbContextFolder
+namespace NavEcommerce.infrastructures.DbContextInstances
 {
     public class NavEcommerceDbContext : DbContext
     {

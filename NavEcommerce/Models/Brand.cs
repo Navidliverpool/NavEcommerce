@@ -1,7 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace NavEcommerce.Models.MotorcyclesFolder
+namespace NavEcommerce.Models
 {
     public class Brand
     {

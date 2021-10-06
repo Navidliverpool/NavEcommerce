@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NavEcommerce.Models.MotorcyclesFolder
+namespace NavEcommerce.Models
 {
     public class BrandMotorcycle
     {

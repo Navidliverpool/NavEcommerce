@@ -1,12 +1,11 @@
-﻿using NavEcommerce.Models.MotorcyclesFolder;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace NavEcommerce.infrastructures
 {
-    public interface ICRUDOperations<T>
+    public interface IGenericRepo<T>
     {
         T Add(T entity);
         T Get(T id);

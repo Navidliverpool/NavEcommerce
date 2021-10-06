@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NavEcommerce.Models.DbContextFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NavEcommerce.infrastructures;
-using NavEcommerce.Models.CRUDFolder;
-using NavEcommerce.Models.MotorcyclesFolder;
+using NavEcommerce.infrastructures.DbContextInstances;
+using NavEcommerce.Models;
+using NavEcommerce.infrastructures.Repositories;
 
 namespace NavEcommerce
 {
@@ -31,7 +31,9 @@ namespace NavEcommerce
             services.AddControllersWithViews();
             services.AddDbContext<NavEcommerceDbContext>(options =>
                      options.UseSqlServer(Configuration.GetConnectionString("MyConnectionString")).EnableSensitiveDataLogging());
-            services.AddScoped(typeof(ICRUDOperations<>), typeof(CRUDOperations<>));
+
+            //services.AddScoped(typeof(ICRUDOperations<>), typeof(CRUDOperations<>));
+            services.AddScoped<IGenericRepo<Motorcycle>, GenericRepo<Motorcycle>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
