@@ -2,7 +2,7 @@
 
 namespace NavEcommerce.Migrations
 {
-    public partial class mymig4 : Migration
+    public partial class mymig5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,7 +25,8 @@ namespace NavEcommerce.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Model = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

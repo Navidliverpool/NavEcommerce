@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NavEcommerce.Models.DbContextFolder;
+using NavEcommerce.infrastructures.DbContextInstances;
 
 namespace NavEcommerce.Migrations
 {
     [DbContext(typeof(NavEcommerceDbContext))]
-    [Migration("20211003150532_mymig4")]
-    partial class mymig4
+    [Migration("20211006230525_mymig5")]
+    partial class mymig5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,7 +36,7 @@ namespace NavEcommerce.Migrations
                     b.ToTable("BrandMotorcycle");
                 });
 
-            modelBuilder.Entity("NavEcommerce.Models.MotorcyclesFolder.Brand", b =>
+            modelBuilder.Entity("NavEcommerce.Models.Brand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace NavEcommerce.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("NavEcommerce.Models.MotorcyclesFolder.Dealer", b =>
+            modelBuilder.Entity("NavEcommerce.Models.Dealer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -80,7 +80,7 @@ namespace NavEcommerce.Migrations
                     b.ToTable("Dealers");
                 });
 
-            modelBuilder.Entity("NavEcommerce.Models.MotorcyclesFolder.Motorcycle", b =>
+            modelBuilder.Entity("NavEcommerce.Models.Motorcycle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,6 +90,9 @@ namespace NavEcommerce.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.ToTable("Motorcycles");
@@ -97,29 +100,29 @@ namespace NavEcommerce.Migrations
 
             modelBuilder.Entity("BrandMotorcycle", b =>
                 {
-                    b.HasOne("NavEcommerce.Models.MotorcyclesFolder.Brand", null)
+                    b.HasOne("NavEcommerce.Models.Brand", null)
                         .WithMany()
                         .HasForeignKey("BrandsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NavEcommerce.Models.MotorcyclesFolder.Motorcycle", null)
+                    b.HasOne("NavEcommerce.Models.Motorcycle", null)
                         .WithMany()
                         .HasForeignKey("MotorcyclesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NavEcommerce.Models.MotorcyclesFolder.Dealer", b =>
+            modelBuilder.Entity("NavEcommerce.Models.Dealer", b =>
                 {
-                    b.HasOne("NavEcommerce.Models.MotorcyclesFolder.Brand", "Brand")
+                    b.HasOne("NavEcommerce.Models.Brand", "Brand")
                         .WithMany("Dealers")
                         .HasForeignKey("BrandId");
 
                     b.Navigation("Brand");
                 });
 
-            modelBuilder.Entity("NavEcommerce.Models.MotorcyclesFolder.Brand", b =>
+            modelBuilder.Entity("NavEcommerce.Models.Brand", b =>
                 {
                     b.Navigation("Dealers");
                 });
