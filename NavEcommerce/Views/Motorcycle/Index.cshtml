@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Motorcycle>
+
+    <!DOCTYPE html>
+    <html>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <body>
+    @{
+        ViewData["Title"] = "Motorcycle Page";
+    }
+
+
+    <div class="text-center">
+        <h1 class="display-4">All Motorcycle</h1>
+        <p> <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+
+    @foreach (var motor in Model)
+    {
+        <div>
+            <table>
+                <tr>
+                    <th>Model</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>@motor.Model</td>
+                    <td>@motor.Price</td>
+                </tr>
+            </table>
+        </div>
+    }
+    </body>
+</html>

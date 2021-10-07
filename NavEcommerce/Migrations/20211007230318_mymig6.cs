@@ -2,7 +2,7 @@
 
 namespace NavEcommerce.Migrations
 {
-    public partial class mymig5 : Migration
+    public partial class mymig6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,20 +20,6 @@ namespace NavEcommerce.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Motorcycles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Motorcycles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Dealers",
                 columns: table => new
                 {
@@ -41,66 +27,79 @@ namespace NavEcommerce.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
-                    Motorcycle = table.Column<bool>(type: "bit", nullable: false),
-                    BrandId = table.Column<int>(type: "int", nullable: true)
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Dealers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Motorcycles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    BrandsId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Motorcycles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Dealers_Brands_BrandId",
-                        column: x => x.BrandId,
+                        name: "FK_Motorcycles_Brands_BrandsId",
+                        column: x => x.BrandsId,
                         principalTable: "Brands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BrandMotorcycle",
+                name: "BrandDealer",
                 columns: table => new
                 {
-                    BrandsId = table.Column<int>(type: "int", nullable: false),
-                    MotorcyclesId = table.Column<int>(type: "int", nullable: false)
+                    BrandId = table.Column<int>(type: "int", nullable: false),
+                    DealersId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BrandMotorcycle", x => new { x.BrandsId, x.MotorcyclesId });
+                    table.PrimaryKey("PK_BrandDealer", x => new { x.BrandId, x.DealersId });
                     table.ForeignKey(
-                        name: "FK_BrandMotorcycle_Brands_BrandsId",
-                        column: x => x.BrandsId,
+                        name: "FK_BrandDealer_Brands_BrandId",
+                        column: x => x.BrandId,
                         principalTable: "Brands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BrandMotorcycle_Motorcycles_MotorcyclesId",
-                        column: x => x.MotorcyclesId,
-                        principalTable: "Motorcycles",
+                        name: "FK_BrandDealer_Dealers_DealersId",
+                        column: x => x.DealersId,
+                        principalTable: "Dealers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BrandMotorcycle_MotorcyclesId",
-                table: "BrandMotorcycle",
-                column: "MotorcyclesId");
+                name: "IX_BrandDealer_DealersId",
+                table: "BrandDealer",
+                column: "DealersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Dealers_BrandId",
-                table: "Dealers",
-                column: "BrandId");
+                name: "IX_Motorcycles_BrandsId",
+                table: "Motorcycles",
+                column: "BrandsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BrandMotorcycle");
-
-            migrationBuilder.DropTable(
-                name: "Dealers");
+                name: "BrandDealer");
 
             migrationBuilder.DropTable(
                 name: "Motorcycles");
+
+            migrationBuilder.DropTable(
+                name: "Dealers");
 
             migrationBuilder.DropTable(
                 name: "Brands");

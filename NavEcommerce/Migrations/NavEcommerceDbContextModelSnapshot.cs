@@ -19,19 +19,19 @@ namespace NavEcommerce.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BrandMotorcycle", b =>
+            modelBuilder.Entity("BrandDealer", b =>
                 {
-                    b.Property<int>("BrandsId")
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MotorcyclesId")
+                    b.Property<int>("DealersId")
                         .HasColumnType("int");
 
-                    b.HasKey("BrandsId", "MotorcyclesId");
+                    b.HasKey("BrandId", "DealersId");
 
-                    b.HasIndex("MotorcyclesId");
+                    b.HasIndex("DealersId");
 
-                    b.ToTable("BrandMotorcycle");
+                    b.ToTable("BrandDealer");
                 });
 
             modelBuilder.Entity("NavEcommerce.Models.Brand", b =>
@@ -59,12 +59,6 @@ namespace NavEcommerce.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Motorcycle")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -72,8 +66,6 @@ namespace NavEcommerce.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BrandId");
 
                     b.ToTable("Dealers");
                 });
@@ -85,6 +77,9 @@ namespace NavEcommerce.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BrandsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
@@ -93,36 +88,38 @@ namespace NavEcommerce.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BrandsId");
+
                     b.ToTable("Motorcycles");
                 });
 
-            modelBuilder.Entity("BrandMotorcycle", b =>
+            modelBuilder.Entity("BrandDealer", b =>
                 {
                     b.HasOne("NavEcommerce.Models.Brand", null)
                         .WithMany()
-                        .HasForeignKey("BrandsId")
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NavEcommerce.Models.Motorcycle", null)
+                    b.HasOne("NavEcommerce.Models.Dealer", null)
                         .WithMany()
-                        .HasForeignKey("MotorcyclesId")
+                        .HasForeignKey("DealersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NavEcommerce.Models.Dealer", b =>
+            modelBuilder.Entity("NavEcommerce.Models.Motorcycle", b =>
                 {
-                    b.HasOne("NavEcommerce.Models.Brand", "Brand")
-                        .WithMany("Dealers")
-                        .HasForeignKey("BrandId");
+                    b.HasOne("NavEcommerce.Models.Brand", "Brands")
+                        .WithMany("Motorcycles")
+                        .HasForeignKey("BrandsId");
 
-                    b.Navigation("Brand");
+                    b.Navigation("Brands");
                 });
 
             modelBuilder.Entity("NavEcommerce.Models.Brand", b =>
                 {
-                    b.Navigation("Dealers");
+                    b.Navigation("Motorcycles");
                 });
 #pragma warning restore 612, 618
         }
