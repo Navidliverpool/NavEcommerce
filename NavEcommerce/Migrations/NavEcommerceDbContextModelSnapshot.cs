@@ -21,22 +21,37 @@ namespace NavEcommerce.Migrations
 
             modelBuilder.Entity("BrandDealer", b =>
                 {
-                    b.Property<int>("BrandId")
+                    b.Property<int>("BrandsBrandId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DealersId")
+                    b.Property<int>("DealersDealerId")
                         .HasColumnType("int");
 
-                    b.HasKey("BrandId", "DealersId");
+                    b.HasKey("BrandsBrandId", "DealersDealerId");
 
-                    b.HasIndex("DealersId");
+                    b.HasIndex("DealersDealerId");
 
                     b.ToTable("BrandDealer");
                 });
 
+            modelBuilder.Entity("DealerMotorcycle", b =>
+                {
+                    b.Property<int>("DealersDealerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MotorcyclesMotorcycleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DealersDealerId", "MotorcyclesMotorcycleId");
+
+                    b.HasIndex("MotorcyclesMotorcycleId");
+
+                    b.ToTable("DealerMotorcycle");
+                });
+
             modelBuilder.Entity("NavEcommerce.Models.Brand", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BrandId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -44,14 +59,14 @@ namespace NavEcommerce.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("BrandId");
 
                     b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("NavEcommerce.Models.Dealer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("DealerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -65,19 +80,19 @@ namespace NavEcommerce.Migrations
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("DealerId");
 
                     b.ToTable("Dealers");
                 });
 
             modelBuilder.Entity("NavEcommerce.Models.Motorcycle", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MotorcycleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BrandsId")
+                    b.Property<int?>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<string>("Model")
@@ -86,9 +101,9 @@ namespace NavEcommerce.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.HasKey("Id");
+                    b.HasKey("MotorcycleId");
 
-                    b.HasIndex("BrandsId");
+                    b.HasIndex("BrandId");
 
                     b.ToTable("Motorcycles");
                 });
@@ -97,24 +112,39 @@ namespace NavEcommerce.Migrations
                 {
                     b.HasOne("NavEcommerce.Models.Brand", null)
                         .WithMany()
-                        .HasForeignKey("BrandId")
+                        .HasForeignKey("BrandsBrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("NavEcommerce.Models.Dealer", null)
                         .WithMany()
-                        .HasForeignKey("DealersId")
+                        .HasForeignKey("DealersDealerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DealerMotorcycle", b =>
+                {
+                    b.HasOne("NavEcommerce.Models.Dealer", null)
+                        .WithMany()
+                        .HasForeignKey("DealersDealerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NavEcommerce.Models.Motorcycle", null)
+                        .WithMany()
+                        .HasForeignKey("MotorcyclesMotorcycleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("NavEcommerce.Models.Motorcycle", b =>
                 {
-                    b.HasOne("NavEcommerce.Models.Brand", "Brands")
+                    b.HasOne("NavEcommerce.Models.Brand", "Brand")
                         .WithMany("Motorcycles")
-                        .HasForeignKey("BrandsId");
+                        .HasForeignKey("BrandId");
 
-                    b.Navigation("Brands");
+                    b.Navigation("Brand");
                 });
 
             modelBuilder.Entity("NavEcommerce.Models.Brand", b =>

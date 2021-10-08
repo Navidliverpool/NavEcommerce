@@ -7,9 +7,11 @@ namespace NavEcommerce.Models
 {
     public class Motorcycle
     {
-        public int Id { get; set; }
+        public int MotorcycleId { get; set; }
         public string Model { get; set; }
         public double Price { get; set; }
-        public Brand Brands { get; set; }
+        public Brand Brand { get; set; }
+        public IEnumerable<Dealer> Dealers { get; set; }
+        //public IEnumerable<MotorcycleDealer> MotorcycleDealers { get; set; }
     }
 }
