@@ -1,37 +1,40 @@
-﻿@model IEnumerable<Motorcycle>
+﻿@model IEnumerable<NavEcommerce.Models.Brand>
 
-    <!DOCTYPE html>
-    <html>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-        }
-    </style>
-    <body>
-    @{
-        ViewData["Title"] = "Motorcycle Page";
-    }
+@{
+    ViewData["Title"] = "Index";
+}
 
+<h1>Index</h1>
 
-    <div class="text-center">
-        <h1 class="display-4">All Motorcycle</h1>
-        <p> <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>
-
-    @foreach (var motor in Model)
-    {
-        <div>
-            <table>
-                <tr>
-                    <th>Model</th>
-                    <th>Price</th>
-                </tr>
-                <tr>
-                    <td>@motor.Model</td>
-                    <td>@motor.Price</td>
-                </tr>
-            </table>
-        </div>
-    }
-    </body>
-</html>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Motorcycles)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motorcycles)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BrandId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BrandId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BrandId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
