@@ -8,7 +8,6 @@ namespace NavEcommerce.Models
 {
     public class Motorcycle
     {
-        [DisplayName("Id")]
         public int MotorcycleId { get; set; }
         public string Model { get; set; }
         public double Price { get; set; }

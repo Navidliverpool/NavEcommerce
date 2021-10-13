@@ -12,24 +12,34 @@ namespace NavEcommerce.Controllers
 {
     public class MotorcycleController : Controller
     {
-        private readonly IGenericRepo<Motorcycle> _motorcycleContext;
-        private readonly IGenericRepo<Brand> _brandContext;
-      
-        public MotorcycleController(IGenericRepo<Motorcycle> motorcycleContext, 
-            IGenericRepo<Brand> brandContext)
+        //private readonly IUnitOfWork _unitOfWork;
+        private readonly NavEcommerceDbContext _context;
+        public MotorcycleController(NavEcommerceDbContext context)
         {
-            _motorcycleContext = motorcycleContext;
-            _brandContext = brandContext;
-           
+            //_unitOfWork = unitOfWork;
+            _context = context;
         }
 
         // GET: MotorcycleController
         public ActionResult Index()
         {
-            var quer = _brandContext.GetAll().ToList();
-           
 
-            return View(quer);
+            var queryMotor = from a in _context.Motorcycles
+                             join b in _context.Brands
+                             on a.Brand.BrandId equals b.BrandId
+                             select new Motorcycle
+                             {
+                                  MotorcycleId = a.MotorcycleId,
+                                  Model = a.Model,
+                                  Price = a.Price,
+                                  Brand = new Brand
+                                  {
+                                      BrandId = b.BrandId,
+                                      Name = b.Name
+                                  }
+                             };
+
+            return View(queryMotor);
         }
 
 
