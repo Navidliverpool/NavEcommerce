@@ -24,12 +24,28 @@ namespace NavEcommerce.Controllers
             _motorcycleRepoContext = motorcycleRepoContext;
         }
 
-        // GET: MotorcycleController
+        // GETAll: MotorcycleController
         public ActionResult Index()
         {
-            var second = _motorcycleRepoContext.GetAll();
+            var getAll = _motorcycleRepoContext.GetAll();
 
-            return View(second);
+            return View(getAll);
         }
+
+        [HttpGet]
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(int? id)
+        {
+            var search = _motorcycleRepoContext.Get(id);
+            //ViewBag.SearchKey = search;
+            return View(search);
+        }
+
+
     }
 }

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<NavEcommerce.Models.Motorcycle>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search for motorcycles</h1>
+
+<div>
+    <form action="/Motorcycle/Search" method="post">
+        <label for="fname">Model:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<h1>@Model</h1>
+@{
+    if (ViewBag.SearchKey != null)
+    {
+        <span>
+            Search Key: @ViewBag.SearchKey
+        </span>
+    }
+}
+
+

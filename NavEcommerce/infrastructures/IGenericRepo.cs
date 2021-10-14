@@ -8,7 +8,7 @@ namespace NavEcommerce.infrastructures
     public interface IGenericRepo<T>
     {
         T Add(T entity);
-        T Get(T id);
+        T Get(int? id);
         IEnumerable<T> GetAll();
         T Update(T entity);
         T Delete(T entity);

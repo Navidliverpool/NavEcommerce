@@ -30,14 +30,9 @@ namespace NavEcommerce.infrastructures.Repositories
             return _context.Add(entity).Entity;
         }
 
-        public virtual T Get(T entity)
+        public virtual T Get(int? id)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            return _context.Find<T>(entity);
+            return _context.Find<T>(id);
         }
 
         public virtual IEnumerable<T> GetAll()

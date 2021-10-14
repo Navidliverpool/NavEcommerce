@@ -31,5 +31,18 @@ namespace NavEcommerce.infrastructures.Repositories
                        }
                    };
         }
+
+        public override Motorcycle Get(int? id)
+        {
+            return _context.Motorcycles.
+                Where(m => m.MotorcycleId == id).
+                Select(m => m).FirstOrDefault();
+                //OrderBy(m => m.Model);
+
+            //return from m in _context.Motorcycles
+            //       where m.MotorcycleId == id
+            //       select m;
+        }
+
     }
 }
