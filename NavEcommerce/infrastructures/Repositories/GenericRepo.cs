@@ -14,7 +14,7 @@ namespace NavEcommerce.infrastructures.Repositories
     //Hala chejuri hal shod moshkel: oonja ke neveshtam where T : class ro ghabl az IGenericRepo<T> neveshte budam dar hali ke bayad badesh neveshe mishod.
     public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
-        private NavEcommerceDbContext _context;
+        protected NavEcommerceDbContext _context;
         public GenericRepo(NavEcommerceDbContext context)
         {
            _context = context;

@@ -11,7 +11,7 @@ namespace NavEcommerce.infrastructures.Repositories
     public class MotorcycleRepo : GenericRepo<Motorcycle>
     {
         public MotorcycleRepo(NavEcommerceDbContext context) : base(context)
-        { 
+        {
         }
 
         public override IQueryable<Motorcycle> GetAll()
@@ -31,4 +31,5 @@ namespace NavEcommerce.infrastructures.Repositories
                        }
                    };
         }
+    }
 }

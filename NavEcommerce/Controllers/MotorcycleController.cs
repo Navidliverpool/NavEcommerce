@@ -15,17 +15,23 @@ namespace NavEcommerce.Controllers
     {
         //private readonly NavEcommerceDbContext _context;
         private readonly IDataCombiner _context;
-        public MotorcycleController(IDataCombiner context)
+        private readonly IGenericRepo<Motorcycle> _context2;
+        public MotorcycleController(IDataCombiner context,
+            IGenericRepo<Motorcycle> context2)
         {
             //_unitOfWork = unitOfWork;
             _context = context;
+            _context2 = context2;
         }
 
         // GET: MotorcycleController
         public ActionResult Index()
         {
-            var data = new DataCombiner();
+            //var data = new DataCombiner();
 
+            //var first = _context.CombineMotorBrandData();
+
+            var second = _context2.GetAll();
 
             //var queryMotor = from a in _context.Motorcycles
             //                 join b in _context.Brands
@@ -44,7 +50,7 @@ namespace NavEcommerce.Controllers
 
 
 
-            return View(data.CombineMotorBrandData());
+            return View(second);
         }
     }
 }
