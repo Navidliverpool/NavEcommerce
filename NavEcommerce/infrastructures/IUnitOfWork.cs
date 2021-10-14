@@ -9,7 +9,7 @@ namespace NavEcommerce.infrastructures
 {
     public interface IUnitOfWork
     {
-        IGenericRepo<Motorcycle> MotorcycleRepo { get; }
-        IGenericRepo<Brand> BrandRepo { get; }
+        IGenericRepo<Motorcycle> MotorcycleRepository { get; }
+        IGenericRepo<Brand> BrandRepository { get; }
     }
 }

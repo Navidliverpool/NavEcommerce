@@ -16,29 +16,29 @@ namespace NavEcommerce.infrastructures
             _context = context;
         }
 
-        private IGenericRepo<Motorcycle> motorcycleRepo;
-        public IGenericRepo<Motorcycle> MotorcycleRepo
+        private IGenericRepo<Motorcycle> motorcycleRepositoriy;
+        public IGenericRepo<Motorcycle> MotorcycleRepository
         {
             get
             {
-                if (motorcycleRepo == null)
+                if (motorcycleRepositoriy == null)
                 {
-                    motorcycleRepo = new MotorcycleRepo(_context);
+                    motorcycleRepositoriy = new MotorcycleRepo(_context);
                 }
-                return motorcycleRepo;
+                return motorcycleRepositoriy;
             }
         }
 
-        private IGenericRepo<Brand> brandRepo;
-        public IGenericRepo<Brand> BrandRepo
+        private IGenericRepo<Brand> brandRepository;
+        public IGenericRepo<Brand> BrandRepository
         {
             get
             {
-                if (brandRepo == null)
+                if (brandRepository == null)
                 {
-                    brandRepo = new BrandRepo(_context);
+                    brandRepository = new BrandRepo(_context);
                 }
-                return brandRepo;
+                return brandRepository;
             }
         }
     }

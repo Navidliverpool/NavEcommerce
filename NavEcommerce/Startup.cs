@@ -36,6 +36,7 @@ namespace NavEcommerce
             //Ba estefade az in dige ehtaj nist dune dune hameye repositoryharo inja to services.AddScoped ezafe konam.
             //baraye khate pain mitunam morajeye konam be "https://stackoverflow.com/questions/2173107/what-exactly-is-an-open-generic-type-in-net"
             services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
+            services.AddScoped<IDataCombiner, DataCombiner>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
