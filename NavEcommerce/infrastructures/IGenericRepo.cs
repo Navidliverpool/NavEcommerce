@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NavEcommerce.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -10,6 +11,7 @@ namespace NavEcommerce.infrastructures
     {
         T Add(T entity);
         IEnumerable<T> Get(int? id);
+        IEnumerable<T> GetByName(Motorcycle name);
         IEnumerable<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
         T Update(T entity);
