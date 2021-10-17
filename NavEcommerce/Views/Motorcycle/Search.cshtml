@@ -4,23 +4,38 @@
     ViewData["Title"] = "Search";
 }
 
-<h1>Search for motorcycles</h1>
+<h1>Search</h1>
 
-<div>
-    <form action="/Motorcycle/Search" method="post">
-        <label for="fname">Model:</label>
-        <input type="text" id="fname" name="fname"><br><br>
-        <input type="submit" value="Submit">
-    </form>
-</div>
-<h1>@Model</h1>
-@{
-    if (ViewBag.SearchKey != null)
-    {
-        <span>
-            Search Key: @ViewBag.SearchKey
-        </span>
-    }
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MotorcycleId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MotorcycleId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MotorcycleId">Delete</a>
+            </td>
+        </tr>
 }
-
-
+    </tbody>
+</table>

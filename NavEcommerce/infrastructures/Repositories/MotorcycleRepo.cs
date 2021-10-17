@@ -32,11 +32,10 @@ namespace NavEcommerce.infrastructures.Repositories
                    };
         }
 
-        public override Motorcycle Get(int? id)
+        public override IEnumerable<Motorcycle> Get(int? id)
         {
             return _context.Motorcycles.
-                Where(m => m.MotorcycleId == id).
-                Select(m => m).FirstOrDefault();
+                Where(m => m.MotorcycleId == id).ToList();
                 //OrderBy(m => m.Model);
 
             //return from m in _context.Motorcycles
