@@ -35,21 +35,14 @@ namespace NavEcommerce.infrastructures.Repositories
             return _context.Find<IEnumerable<T>>(id);
         }
 
-        public virtual IEnumerable<T> GetByName(Motorcycle name)
-        {
-            return _context.Find<T>(name);
-        }
+        //public virtual IEnumerable<T> GetByName(string name)
+        //{
+        //    return _context.Find<IEnumerable<T>>(name);
+        //}
 
         public virtual IEnumerable<T> GetAll()
         {
             return _context.Set<T>().ToList();
-        }
-
-        public virtual IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
-        {
-            return _context.Set<T>()
-                .AsQueryable()
-                .Where(predicate).ToList();
         }
 
         public virtual T Update(T entity)

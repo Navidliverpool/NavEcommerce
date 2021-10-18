@@ -35,7 +35,8 @@ namespace NavEcommerce.infrastructures.Repositories
         public override IEnumerable<Motorcycle> Get(int? id)
         {
             return _context.Motorcycles
-                .Where(m => m.MotorcycleId == id).ToList();
+                .Where(m => m.MotorcycleId == id)
+                .ToList();
                 //OrderBy(m => m.Model);
 
             //return from m in _context.Motorcycles
@@ -43,15 +44,15 @@ namespace NavEcommerce.infrastructures.Repositories
             //       select m;
         }
 
-        public override IEnumerable<Motorcycle> GetByName(Motorcycle name)
-        {
-            return _context.Motorcycles
-                .Where(m => m.Model == name.Model)
-                .OrderBy(m => m.Brand)
-                .ThenBy(m => m.Model)
-                .ToList();
+        //public override IEnumerable<Motorcycle> GetByName(string name)
+        //{
+        //    return _context.Motorcycles
+        //        .Where(m => m.Model == name)
+        //        //.OrderBy(m => m.Brand)
+        //        //.ThenBy(m => m.Model)
+        //        .ToList();
                
-        }
+        //}
 
     }
 }

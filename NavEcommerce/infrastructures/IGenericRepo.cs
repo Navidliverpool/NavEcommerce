@@ -11,9 +11,8 @@ namespace NavEcommerce.infrastructures
     {
         T Add(T entity);
         IEnumerable<T> Get(int? id);
-        IEnumerable<T> GetByName(Motorcycle name);
+        //IEnumerable<T> GetByName(string name);
         IEnumerable<T> GetAll();
-        IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
         T Update(T entity);
         T Delete(T entity);
         void SaveChanges();

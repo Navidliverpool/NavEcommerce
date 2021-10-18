@@ -33,12 +33,27 @@ namespace NavEcommerce.Controllers
             return View(getAll);
         }
 
-        public ActionResult Search(int id)
+        public ActionResult SearchById(int id)
         {
-            var query = _motorcycleRepoContext.Get(id);
-            return View(query);
+            var queryId = _motorcycleRepoContext.Get(id);
+            return View(queryId);
         }
-        
+
+
+
+        //public ActionResult SearchByName(string id)
+        //{
+        //    if (string.IsNullOrEmpty(id))
+        //    {
+        //        return BadRequest("The input is null.");
+        //    }
+
+        //    var queryName = _motorcycleRepoContext.GetByName(id);
+        //    return View(queryName);
+        //}
+
+
+
         //public ActionResult Search(LoadMotorcycles loadMotorcycles)
         //{
         //    var motor = _motorcycleRepoContext.
@@ -51,6 +66,8 @@ namespace NavEcommerce.Controllers
         //    }
         //    return View();
         //}
+
+
 
         //[HttpPost]
         //public ActionResult Search(int? id)
