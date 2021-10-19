@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NavEcommerce.infrastructures.DbContextInstances;
 using NavEcommerce.Models;
 using System;
@@ -12,6 +13,18 @@ namespace NavEcommerce.infrastructures.Repositories
     {
         public MotorcycleRepo(NavEcommerceDbContext context) : base(context)
         {
+        }
+
+        public override IEnumerable<Motorcycle> Get(int? id)
+        {
+            return _context.Motorcycles
+                .Where(m => m.MotorcycleId == id)
+                .ToList();
+            //OrderBy(m => m.Model);
+
+            //return from m in _context.Motorcycles
+            //       where m.MotorcycleId == id
+            //       select m;
         }
 
         public override IQueryable<Motorcycle> GetAll()
@@ -32,16 +45,11 @@ namespace NavEcommerce.infrastructures.Repositories
                    };
         }
 
-        public override IEnumerable<Motorcycle> Get(int? id)
+        public override Motorcycle Delete(Motorcycle entity)
         {
-            return _context.Motorcycles
-                .Where(m => m.MotorcycleId == id)
-                .ToList();
-                //OrderBy(m => m.Model);
-
-            //return from m in _context.Motorcycles
-            //       where m.MotorcycleId == id
-            //       select m;
+            var queryDelete = _context.Motorcycles
+                .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);
+            return _context.Remove(queryDelete).Entity;
         }
 
         //public override IEnumerable<Motorcycle> GetByName(string name)
@@ -51,8 +59,10 @@ namespace NavEcommerce.infrastructures.Repositories
         //        //.OrderBy(m => m.Brand)
         //        //.ThenBy(m => m.Model)
         //        .ToList();
-               
+
         //}
+
+
 
     }
 }

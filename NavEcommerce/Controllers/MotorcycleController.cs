@@ -28,17 +28,28 @@ namespace NavEcommerce.Controllers
         // GETAll: MotorcycleController
         public ActionResult Index()
         {
-            var getAll = _motorcycleRepoContext.GetAll();
+            var queryGetAll = _motorcycleRepoContext.GetAll();
 
-            return View(getAll);
+            return View(queryGetAll);
         }
 
         public ActionResult SearchById(int id)
         {
-            var queryId = _motorcycleRepoContext.Get(id);
-            return View(queryId);
+            var querySearchById = _motorcycleRepoContext.Get(id);
+            return View(querySearchById);
         }
 
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(Motorcycle motorcycle)
+        {
+            var queryDelete = _motorcycleRepoContext.Delete(motorcycle);
+            return View(queryDelete);
+        }
 
 
         //public ActionResult SearchByName(string id)

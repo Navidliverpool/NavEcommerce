@@ -57,8 +57,7 @@ namespace NavEcommerce.infrastructures.Repositories
 
         public virtual T Delete(T entity)
         {
-            return _context.Remove(entity).Entity;
-             
+            return _context.Remove(entity).Entity;     
         }
 
         public void SaveChanges()
