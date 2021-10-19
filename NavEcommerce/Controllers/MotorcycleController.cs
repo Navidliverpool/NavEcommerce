@@ -45,10 +45,11 @@ namespace NavEcommerce.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(Motorcycle motorcycle)
+        public ActionResult Delete(Motorcycle motorcycle)
         {
-            var queryDelete = _motorcycleRepoContext.Delete(motorcycle);
-            return View(queryDelete);
+            _motorcycleRepoContext.Delete(motorcycle);
+            _motorcycleRepoContext.SaveChanges();
+            return RedirectToAction("Index");
         }
 
 

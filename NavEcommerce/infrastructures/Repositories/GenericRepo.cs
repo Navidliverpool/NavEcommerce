@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NavEcommerce.infrastructures;
 using NavEcommerce.infrastructures.DbContextInstances;
 using NavEcommerce.Models;
+using System.Data;
 
 namespace NavEcommerce.infrastructures.Repositories
 {
@@ -51,13 +52,12 @@ namespace NavEcommerce.infrastructures.Repositories
             {
                 throw new ArgumentNullException();
             }
-
             return _context.Update(entity).Entity;
         }
 
         public virtual T Delete(T entity)
         {
-            return _context.Remove(entity).Entity;     
+            return _context.Remove(entity).Entity;
         }
 
         public void SaveChanges()

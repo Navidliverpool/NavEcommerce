@@ -47,9 +47,20 @@ namespace NavEcommerce.infrastructures.Repositories
 
         public override Motorcycle Delete(Motorcycle entity)
         {
-            var queryDelete = _context.Motorcycles
-                .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);
-            return _context.Remove(queryDelete).Entity;
+            //var queryDelete = _context.Motorcycles
+            //    .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);
+            //return _context.Remove(queryDelete).Entity;
+
+            //var queryGet = _context.Motorcycles
+            //   .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);
+            //var queryDelete = _context.Remove(queryGet).Entity;
+            //_context.Entry(entity).State = EntityState.Modified;
+
+           
+                
+            return _context.Remove(_context.Motorcycles
+                .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId)).Entity;
+
         }
 
         //public override IEnumerable<Motorcycle> GetByName(string name)
