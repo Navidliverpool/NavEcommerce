@@ -10,7 +10,7 @@ namespace NavEcommerce.infrastructures
     public interface IGenericRepo<T>
     {
         T Add(T entity);
-        IEnumerable<T> Get(int? id);
+        T Get(int? id);
         //IEnumerable<T> GetByName(string name);
         IEnumerable<T> GetAll();
         T Update(T entity);

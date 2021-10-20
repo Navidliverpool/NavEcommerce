@@ -1,10 +1,10 @@
-﻿@model IEnumerable<NavEcommerce.Models.Motorcycle>
+﻿@model NavEcommerce.Models.Motorcycle
 
 @{
-    ViewData["Title"] = "Search";
+    ViewData["Title"] = "SearchById";
 }
 
-<h1>Search</h1>
+<h1>Search By Id</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -18,24 +18,29 @@
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th></th>
+            <th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Model)
+                @Html.DisplayFor(modelItem => modelItem.Model)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => modelItem.Price)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MotorcycleId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MotorcycleId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MotorcycleId">Delete</a>
+                @Html.DisplayFor(modelItem => modelItem.Brand.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="MotorcycleId">Edit</a> |
+                <a asp-action="Details" asp-route-id="MotorcycleId">Details</a> |
+                <a asp-action="Delete" asp-route-id="MotorcycleId">Delete</a>
             </td>
         </tr>
-}
     </tbody>
 </table>

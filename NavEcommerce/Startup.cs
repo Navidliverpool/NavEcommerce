@@ -32,7 +32,6 @@ namespace NavEcommerce
             services.AddDbContext<NavEcommerceDbContext>(options =>
                      options.UseSqlServer(Configuration.GetConnectionString("MyConnectionString")).EnableSensitiveDataLogging());
 
-
             //Ba estefade az in dige ehtaj nist dune dune hameye repositoryharo inja to services.AddScoped ezafe konam.
             //baraye khate pain mitunam morajeye konam be "https://stackoverflow.com/questions/2173107/what-exactly-is-an-open-generic-type-in-net"
             //services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
@@ -56,11 +55,8 @@ namespace NavEcommerce
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

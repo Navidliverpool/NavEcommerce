@@ -14,13 +14,11 @@ namespace NavEcommerce.Controllers
 {
     public class MotorcycleController : Controller
     {
-        //private readonly NavEcommerceDbContext _context;
         private readonly IDataCombiner _context;
         private readonly IGenericRepo<Motorcycle> _motorcycleRepoContext;
         public MotorcycleController(IDataCombiner context,
             IGenericRepo<Motorcycle> motorcycleRepoContext)
         {
-            //_unitOfWork = unitOfWork;
             _context = context;
             _motorcycleRepoContext = motorcycleRepoContext;
         }
@@ -29,7 +27,6 @@ namespace NavEcommerce.Controllers
         public ActionResult Index()
         {
             var queryGetAll = _motorcycleRepoContext.GetAll();
-
             return View(queryGetAll);
         }
 
@@ -39,15 +36,16 @@ namespace NavEcommerce.Controllers
             return View(querySearchById);
         }
 
-        public ActionResult Delete()
+        public ActionResult Delete()   
         {
             return View();
         }
 
-        [HttpPost, ActionName("Delete")]
-        public ActionResult Delete(Motorcycle motorcycle)
+        [HttpPost]
+        public ActionResult Delete(int id, Motorcycle motorcycle)
         {
-            _motorcycleRepoContext.Delete(motorcycle);
+            var GetMotorcycleDeletion = _motorcycleRepoContext.Get(id);
+            _motorcycleRepoContext.Delete(GetMotorcycleDeletion);
             _motorcycleRepoContext.SaveChanges();
             return RedirectToAction("Index");
         }

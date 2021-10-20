@@ -15,11 +15,11 @@ namespace NavEcommerce.infrastructures.Repositories
         {
         }
 
-        public override IEnumerable<Motorcycle> Get(int? id)
+        public override Motorcycle Get(int? id)
         {
             return _context.Motorcycles
                 .Where(m => m.MotorcycleId == id)
-                .ToList();
+                .FirstOrDefault();
             //OrderBy(m => m.Model);
 
             //return from m in _context.Motorcycles
@@ -47,20 +47,22 @@ namespace NavEcommerce.infrastructures.Repositories
 
         public override Motorcycle Delete(Motorcycle entity)
         {
-            //var queryDelete = _context.Motorcycles
+            //In rahe hale asli hast vali zamani ke hanuz Delete comel nemishe.
+            //var querydelete = _context.Motorcycles
             //    .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);
-            //return _context.Remove(queryDelete).Entity;
+            //return _context.Remove(querydelete).Entity;
+
+            var queryDelete = _context.Motorcycles
+                .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);
+            return _context.Remove(queryDelete).Entity;
 
             //var queryGet = _context.Motorcycles
             //   .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);
             //var queryDelete = _context.Remove(queryGet).Entity;
             //_context.Entry(entity).State = EntityState.Modified;
 
-           
-                
-            return _context.Remove(_context.Motorcycles
-                .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId)).Entity;
-
+            //return _context.Remove(_context.Motorcycles
+            //    .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId)).Entity;
         }
 
         //public override IEnumerable<Motorcycle> GetByName(string name)

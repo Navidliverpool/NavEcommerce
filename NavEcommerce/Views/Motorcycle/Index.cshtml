@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.MotorcycleId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Model)
             </th>
             <th>
@@ -21,11 +24,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.Brand)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand.BrandId)
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MotorcycleId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Model)
             </td>
@@ -34,6 +43,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Brand.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.BrandId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MotorcycleId">Edit</a> |
