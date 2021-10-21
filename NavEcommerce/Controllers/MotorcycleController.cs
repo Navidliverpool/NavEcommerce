@@ -54,6 +54,10 @@ namespace NavEcommerce.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
 
         //public ActionResult SearchByName(string id)
         //{
