@@ -5,6 +5,7 @@ using NavEcommerce.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace NavEcommerce.infrastructures.Repositories
@@ -13,6 +14,18 @@ namespace NavEcommerce.infrastructures.Repositories
     {
         public MotorcycleRepo(NavEcommerceDbContext context) : base(context)
         {
+        }
+
+        public override IEnumerable<Motorcycle> Find(Expression<Func<Motorcycle, bool>> predicate)
+        {            
+            return base.Find(predicate);
+        }
+
+        public override IEnumerable<Motorcycle> GetItemForSearchById(int id)
+        {
+            return _context.Motorcycles
+                           .Where(m => m.MotorcycleId == id)
+                           .ToList();
         }
 
         public override Motorcycle Get(int? id)

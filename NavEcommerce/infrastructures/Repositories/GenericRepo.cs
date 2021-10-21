@@ -31,9 +31,21 @@ namespace NavEcommerce.infrastructures.Repositories
             return _context.Add(entity).Entity;
         }
 
+        public virtual IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
+        {
+            return _context.Set<T>()
+                .AsQueryable()
+                .Where(predicate).ToList();
+        }
+
         public virtual T Get(int? id)
         {
             return _context.Find<T>(id);
+        }
+
+        public virtual IEnumerable<T> GetItemForSearchById(int id)
+        {
+            return _context.Find<IEnumerable<T>>(id);
         }
 
         //public virtual IEnumerable<T> GetByName(string name)
@@ -64,5 +76,7 @@ namespace NavEcommerce.infrastructures.Repositories
         {
             _context.SaveChanges();
         }
+
+       
     }
 }

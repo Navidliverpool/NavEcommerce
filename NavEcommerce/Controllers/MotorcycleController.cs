@@ -16,10 +16,8 @@ namespace NavEcommerce.Controllers
     {
         private readonly IDataCombiner _context;
         private readonly IGenericRepo<Motorcycle> _motorcycleRepoContext;
-        public MotorcycleController(IDataCombiner context,
-            IGenericRepo<Motorcycle> motorcycleRepoContext)
+        public MotorcycleController(IGenericRepo<Motorcycle> motorcycleRepoContext)
         {
-            _context = context;
             _motorcycleRepoContext = motorcycleRepoContext;
         }
 
@@ -30,13 +28,19 @@ namespace NavEcommerce.Controllers
             return View(queryGetAll);
         }
 
+        //public ActionResult SearchById()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
         public ActionResult SearchById(int id)
         {
-            var querySearchById = _motorcycleRepoContext.Get(id);
+            var querySearchById = _motorcycleRepoContext.GetItemForSearchById(id);
             return View(querySearchById);
         }
 
-        public ActionResult Delete()   
+        public ActionResult Delete()
         {
             return View();
         }
@@ -62,31 +66,6 @@ namespace NavEcommerce.Controllers
         //    return View(queryName);
         //}
 
-
-
-        //public ActionResult Search(LoadMotorcycles loadMotorcycles)
-        //{
-        //    var motor = _motorcycleRepoContext.
-        //        Find(m => m.Model == loadMotorcycles.motorcycleModel.Model).
-        //        FirstOrDefault();
-        //    if(motor != null)
-        //    {
-        //        //motor.Price == loadMotorcycles.motorcycleModel.Price;
-
-        //    }
-        //    return View();
-        //}
-
-
-
-        //[HttpPost]
-        //public ActionResult Search(int? id)
-        //{
-        //    //var search = _motorcycleRepoContext.Get(id);
-        //    ////ViewBag.SearchKey = search;
-        //    //return View(search.Model);
-
-        //}
 
 
     }
