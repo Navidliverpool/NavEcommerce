@@ -16,6 +16,16 @@ namespace NavEcommerce.infrastructures.Repositories
         {
         }
 
+        //public override Motorcycle Add(Motorcycle entity)
+        //{
+        //    var t = _context.Motorcycles
+        //        .Select(new Motorcycle 
+        //        {
+                    
+        //        })
+        //    return base.Add(entity);
+        //}
+
         public override IEnumerable<Motorcycle> Find(Expression<Func<Motorcycle, bool>> predicate)
         {            
             return base.Find(predicate);
@@ -60,14 +70,14 @@ namespace NavEcommerce.infrastructures.Repositories
 
         public override Motorcycle Delete(Motorcycle entity)
         {
+            var queryDelete = _context.Motorcycles
+               .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);
+            return _context.Remove(queryDelete).Entity;
+
             //In rahe hale asli hast vali zamani ke hanuz Delete comel nemishe.
             //var querydelete = _context.Motorcycles
             //    .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);
             //return _context.Remove(querydelete).Entity;
-
-            var queryDelete = _context.Motorcycles
-                .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);
-            return _context.Remove(queryDelete).Entity;
 
             //var queryGet = _context.Motorcycles
             //   .FirstOrDefault(m => m.MotorcycleId == entity.MotorcycleId);

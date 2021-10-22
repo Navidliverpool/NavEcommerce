@@ -14,10 +14,13 @@ namespace NavEcommerce.Controllers
 {
     public class MotorcycleController : Controller
     {
-        private readonly IDataCombiner _context;
+        //private readonly IDataCombiner _context;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IGenericRepo<Motorcycle> _motorcycleRepoContext;
-        public MotorcycleController(IGenericRepo<Motorcycle> motorcycleRepoContext)
+        public MotorcycleController(IGenericRepo<Motorcycle> motorcycleRepoContext,
+            IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
             _motorcycleRepoContext = motorcycleRepoContext;
         }
 
@@ -56,6 +59,15 @@ namespace NavEcommerce.Controllers
 
         public ActionResult Create()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(LoadMotorcycles loadMotorcycles)
+        {
+            var queryAddMotorcycle = _unitOfWork.MotorcycleRepository
+                .Find(m => m.MotorcycleId == loadMotorcycles.motorcycleModel.MotorcycleId)
+                .FirstOrDefault();
             return View();
         }
 

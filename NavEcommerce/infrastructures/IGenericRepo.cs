@@ -13,10 +13,10 @@ namespace NavEcommerce.infrastructures
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
         T Get(int? id);
         IEnumerable<T> GetItemForSearchById(int id);
-        //IEnumerable<T> GetByName(string name);
         IEnumerable<T> GetAll();
         T Update(T entity);
         T Delete(T entity);
         void SaveChanges();
+        //IEnumerable<T> GetByName(string name);
     }
 }
