@@ -37,7 +37,8 @@ namespace NavEcommerce
             //services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
             services.AddTransient<IGenericRepo<Motorcycle>, MotorcycleRepo>();
             services.AddTransient<IGenericRepo<Brand>, BrandRepo>();
-            services.AddScoped<IDataCombiner, DataCombiner>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            //services.AddScoped<IDataCombiner, DataCombiner>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

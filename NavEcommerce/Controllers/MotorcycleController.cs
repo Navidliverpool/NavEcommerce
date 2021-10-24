@@ -68,6 +68,15 @@ namespace NavEcommerce.Controllers
             var queryAddMotorcycle = _unitOfWork.MotorcycleRepository
                 .Find(m => m.MotorcycleId == loadMotorcycles.motorcycleModel.MotorcycleId)
                 .FirstOrDefault();
+
+            queryAddMotorcycle.Model = loadMotorcycles.motorcycleModel.Model;
+            queryAddMotorcycle.Price = loadMotorcycles.motorcycleModel.Price;
+            queryAddMotorcycle.Brand = loadMotorcycles.motorcycleModel.Brand;
+
+            _unitOfWork.MotorcycleRepository.Update(queryAddMotorcycle);
+
+            _unitOfWork.MotorcycleRepository.SaveChanges();
+
             return View();
         }
 
