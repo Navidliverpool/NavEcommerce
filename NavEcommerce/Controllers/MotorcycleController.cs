@@ -14,7 +14,6 @@ namespace NavEcommerce.Controllers
 {
     public class MotorcycleController : Controller
     {
-        //private readonly IDataCombiner _context;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGenericRepo<Motorcycle> _motorcycleRepoContext;
         public MotorcycleController(IGenericRepo<Motorcycle> motorcycleRepoContext,
@@ -24,19 +23,12 @@ namespace NavEcommerce.Controllers
             _motorcycleRepoContext = motorcycleRepoContext;
         }
 
-        // GETAll: MotorcycleController
         public ActionResult Index()
         {
             var queryGetAll = _motorcycleRepoContext.GetAll();
             return View(queryGetAll);
         }
 
-        //public ActionResult SearchById()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
         public ActionResult SearchById(int id)
         {
             var querySearchById = _motorcycleRepoContext.GetItemForSearchById(id);
@@ -65,19 +57,38 @@ namespace NavEcommerce.Controllers
         [HttpPost]
         public ActionResult Create(LoadMotorcycles loadMotorcycles)
         {
-            var queryAddMotorcycle = _unitOfWork.MotorcycleRepository
+            if(loadMotorcycles == null)
+              throw new ArgumentNullException();
+           
+            var motorcycle = _unitOfWork.MotorcycleRepository
                 .Find(m => m.MotorcycleId == loadMotorcycles.motorcycleModel.MotorcycleId)
                 .FirstOrDefault();
 
-            queryAddMotorcycle.Model = loadMotorcycles.motorcycleModel.Model;
-            queryAddMotorcycle.Price = loadMotorcycles.motorcycleModel.Price;
-            queryAddMotorcycle.Brand = loadMotorcycles.motorcycleModel.Brand;
+            if(motorcycle != null)
+            {
+                motorcycle.Model = loadMotorcycles.motorcycleModel.Model;
+                motorcycle.Price = loadMotorcycles.motorcycleModel.Price;
+                motorcycle.Brand = loadMotorcycles.motorcycleModel.Brand;
 
-            _unitOfWork.MotorcycleRepository.Update(queryAddMotorcycle);
-
+                _unitOfWork.MotorcycleRepository.Update(motorcycle);
+            }
+            else
+            {
+                motorcycle = new Motorcycle
+                {
+                    MotorcycleId = loadMotorcycles.motorcycleModel.MotorcycleId,
+                    Model = loadMotorcycles.motorcycleModel.Model,
+                    Price = loadMotorcycles.motorcycleModel.Price,
+                    Brand = loadMotorcycles.motorcycleModel.Brand
+                };
+            }
+         
             _unitOfWork.MotorcycleRepository.SaveChanges();
 
-            return View();
+            //_motorcycleRepoContext.Add(loadMotorcycles);
+            //_motorcycleRepoContext.SaveChanges();
+
+            return View("Index");
         }
 
         //public ActionResult SearchByName(string id)
