@@ -47,7 +47,7 @@ namespace NavEcommerce.Controllers
             _motorcycleRepoContext.Delete(GetMotorcycleDeletion);
             _motorcycleRepoContext.SaveChanges();
             return RedirectToAction("Index");
-        }
+        } 
 
         public ActionResult Create()
         {
