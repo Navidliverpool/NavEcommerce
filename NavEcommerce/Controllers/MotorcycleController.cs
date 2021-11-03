@@ -54,7 +54,7 @@ namespace NavEcommerce.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost]  
         public ActionResult Create(LoadMotorcycles loadMotorcycles)
         {
             if(loadMotorcycles == null)
